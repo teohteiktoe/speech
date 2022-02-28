@@ -18,8 +18,8 @@ def upload_file():
         file = request.files['file']
         filename = secure_filename(file.filename)
         file.save(app.config['UPLOAD_FOLDER'] + filename)
-        file = open(app.config['UPLOAD_FOLDER'] + filename,"r")
-        a = sr.AudioFile(filename)
+        #file = open(app.config['UPLOAD_FOLDER'] + filename,"r")
+        a = sr.AudioFile(app.config['UPLOAD_FOLDER'] + filename)
         with a as source:
             a = sr.Recognizer().record(source)
         s = sr.Recognizer().recognize_google(a)
