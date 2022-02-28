@@ -16,11 +16,9 @@ app.config['UPLOAD_FOLDER'] = "static/"
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
-        print("File Received")
         filename = secure_filename(file.filename)
         file.save(app.config['UPLOAD_FOLDER'] + filename)
         file = open(app.config['UPLOAD_FOLDER'] + filename,"r")
-        print(filename)
         a = sr.AudioFile(filename)
         with a as source:
             a = sr.Recognizer().record(source)
